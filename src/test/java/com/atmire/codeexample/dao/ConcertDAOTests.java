@@ -21,6 +21,10 @@ class ConcertDAOTests {
         return concertDAO.createNewConcert("John", "Sidewalk theater", new Date());
     }
 
+    /**
+     * getConcertById
+     */
+
 	@Test
     public void getConcertById_givenConcertDoesNotExists_shouldThrowNullPointerException(){
         try{
@@ -36,10 +40,30 @@ class ConcertDAOTests {
         Concert expectedConcert = createConcert();
         
         try{
-            Concert actualConcert = concertDAO.getConcertById(0);
+            long concertId = expectedConcert.getId();
+            Concert actualConcert = concertDAO.getConcertById(concertId);
             assertEquals(expectedConcert, actualConcert, "Wrong concert retrieved");
         }catch(NullPointerException exception){
             assertTrue(false, "NullPointer exception raised");
+        }
+    }
+
+    /**
+     * RemoveConcert
+     */
+
+	@Test
+    public void removeConcert_givenConcertDoesExists_shouldRemoveItFromTheList(){
+        Concert expectedConcert = createConcert();
+        
+        try{
+            long concertId = expectedConcert.getId();
+            concertDAO.removeConcert(concertId);
+            concertDAO.getConcertById(concertId);
+
+            assertTrue(false, "NullPointerException not raised");
+        }catch(NullPointerException exception){
+            assertTrue(true);
         }
     }
 
