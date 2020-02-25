@@ -47,7 +47,8 @@ public class ConcertController {
     /**
      * Return a Concert object identified by the given id 
      * 
-     * @param id the Id of the concert to retrieve
+     * @param body the body of the request containing;
+     *      - "id" the ID of the concert to remove
      * 
      * @return a Concert object or a ResponseStatusException
      */
@@ -63,9 +64,10 @@ public class ConcertController {
     /**
      * Create a new concert with both dynamic and static data for the example
      * 
-     * @param artistName the name of the artist who will perform the concert
-     * @param venueName the name of the venue where the concert will be performed
-     * @param date the date at which the concert will be performed (Use this format "dd-MM-yyyy hh:mm a")
+     * @param body body the body of the request containing:
+     *      - "artistName" the name of the artist who will perform the concert
+     *      - "venueName" the name of the venue where the concert will be performed
+     *      - "date" the date at which the concert will be performed (Use this format "dd-MM-yyyy hh:mm a")
      * 
      * @return The created Concert Object
      */
@@ -81,8 +83,9 @@ public class ConcertController {
     /**
      * Update the date of a concert
      * 
-     * @param id the ID of the concert to update
-     * @param date the new date of the concert (Use this format "dd-MM-yyyy hh:mm a")
+     * @param body the body of the request containing: 
+     *          - "id" the ID of the concert to update
+     *          - "date" the new date of the concert (Use this format "dd-MM-yyyy hh:mm a")
      * 
      * @return The updated Concert Object
      */
@@ -100,7 +103,8 @@ public class ConcertController {
     /**
      * Remove a concert from the list
      * 
-     * @param id the ID of the concert to remove
+     * @param body the body of the request containing;
+     *      - "id" the ID of the concert to remove
      */
 	@DeleteMapping("/concert")
 	public void deleteConcert(@RequestBody ConcertRequestBody body) {
