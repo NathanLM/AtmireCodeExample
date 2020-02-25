@@ -20,6 +20,16 @@ public class ConcertDAO{
     }
 
     /**
+     * Create a copy of the concertList
+     * @return an ArrayList with the same content as the concertList 
+     */
+    private ArrayList<Concert> cloneConcertList(){
+        ArrayList<Concert> tempConcertList = new ArrayList<Concert>();
+        tempConcertList.addAll(concertList);
+        return tempConcertList;
+    }
+
+    /**
      * Create a new concert and add it to the list
      * 
      * @param newArtistName the name of the artist who will perform the concert
@@ -66,7 +76,12 @@ public class ConcertDAO{
      * @param concertId the ID of the concert to remove
      */
     public void removeConcert(long concertId){
-        //TODO : To implement
+        ArrayList<Concert> tempConcertList = cloneConcertList();
+        for(Concert concert: tempConcertList){
+            if(concert.getId() == concertId){
+                concertList.remove(concert);
+            }
+        }
     }
 
     /**
@@ -91,6 +106,7 @@ public class ConcertDAO{
                 return concert;
             }
         }
+        // Return a NullPointerException in order for the controller to catch it.
         throw new NullPointerException("Concert not found for id " + concertId);
     }
 }
