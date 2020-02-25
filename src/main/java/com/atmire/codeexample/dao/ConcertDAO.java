@@ -86,7 +86,11 @@ public class ConcertDAO{
      * @return a Concert object
      */
     public Concert getConcertById(long concertId){
-        //TODO: To implement
-        return null;
+        for(Concert concert: concertList){
+            if(concert.getId() == concertId){
+                return concert;
+            }
+        }
+        throw new NullPointerException("Concert not found for id " + concertId);
     }
 }
