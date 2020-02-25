@@ -107,6 +107,13 @@ public class ConcertDAO{
     }
 
     /**
+     * Clear the list of concerts
+     */
+    public void clearConcertList(){
+        concertList.clear();
+    }
+
+    /**
      * Return a concert corresponding to the ID from the list or throw an exception if none exist 
      * 
      * @param concertId the ID of the concert to retrieve
