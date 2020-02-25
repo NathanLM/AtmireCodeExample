@@ -9,5 +9,4 @@ public class AtmireApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(AtmireApplication.class, args);
 	}
-
 }

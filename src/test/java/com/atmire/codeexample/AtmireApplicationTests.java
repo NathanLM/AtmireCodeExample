@@ -1,4 +1,4 @@
-package com.atmire.atmire;
+package com.atmire.codeexample;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
