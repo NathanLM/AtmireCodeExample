@@ -34,7 +34,7 @@ class ConcertDAOTests {
     public void getConcertById_givenConcertDoesNotExists_shouldThrowNullPointerException(){
         try{
             concertDAO.getConcertById(999);
-            assertTrue(false, "NullPointerException not raised");
+            assertTrue(false, "NullPointerException was not raised as expected");
         }catch(NullPointerException exception){
             assertTrue(true);
         }
@@ -49,7 +49,7 @@ class ConcertDAOTests {
             Concert actualConcert = concertDAO.getConcertById(concertId);
             assertEquals(expectedConcert, actualConcert, "Wrong concert retrieved");
         }catch(NullPointerException exception){
-            assertTrue(false, "NullPointer exception raised");
+            assertTrue(false, "NullPointerException was exception raised as expected");
         }
     }
 
@@ -64,7 +64,7 @@ class ConcertDAOTests {
             concertDAO.removeConcert(concertId);
             concertDAO.getConcertById(concertId);
 
-            assertTrue(false, "NullPointerException not raised");
+            assertTrue(false, "NullPointerException was not raised as expected");
         }catch(NullPointerException exception){
             assertTrue(true);
         }
@@ -76,11 +76,20 @@ class ConcertDAOTests {
 
 	@Test
     public void updateConcert_givenConcertDoesExists_shouldModifyTheItemInTheList(){
-        Date expectedDate = new Date(99999);
-        long concertId = createConcert().getId();
-        Concert concertAfterUpdate = concertDAO.updateConcert(concertId, expectedDate);
+        Concert concertBeforeUpdate = createConcert();
+        Concert concertAfterUpdate = concertDAO.updateConcert(concertBeforeUpdate.getId(), new Date(99999));
 
-        assertNotEquals(expectedDate.getTime(), concertAfterUpdate.getDate().getTime(), "The date has not been updated");
+        assertNotEquals(concertBeforeUpdate.getDate().getTime(), concertAfterUpdate.getDate().getTime(), "The date has not been updated");
+    }
+
+	@Test
+    public void updateConcert_givenConcertDoesNotExists_shouldThrowNullPointerException(){
+        try{
+            concertDAO.updateConcert(99999, new Date());
+            assertTrue(false, "NullPointerException was not raised as expected");
+        }catch(NullPointerException exception){
+            assertTrue(true);
+        }
     }
     
 

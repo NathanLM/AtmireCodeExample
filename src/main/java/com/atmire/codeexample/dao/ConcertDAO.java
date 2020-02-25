@@ -69,8 +69,18 @@ public class ConcertDAO{
      * @return the concert after the update
      */
     public Concert updateConcert(long concertId, Date newDate){
-        //TODO : To implement
-        return null;
+        int index = 0;
+        for(Concert concert: concertList){
+            if(concert.getId() == concertId){
+                Concert updatedConcert = new Concert(concertId, concert.getArtist(), concert.getVenue(), newDate);
+                concertList.set(index, updatedConcert);
+                return updatedConcert;
+            }
+            index++;
+        }
+
+        // Return a NullPointerException in order for the controller to catch it.
+        throw new NullPointerException("Concert not found for id " + concertId);
     }
 
     /**
