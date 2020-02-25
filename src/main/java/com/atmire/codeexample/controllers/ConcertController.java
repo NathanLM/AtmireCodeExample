@@ -57,8 +57,8 @@ public class ConcertController {
      * 
      * @return The created Concert Object
      */
-	@PostMapping("/concert")
-	public Concert postConcert(@RequestParam String artistName, @RequestParam String venueName, @RequestParam Date date) {
+	@PostMapping("/concert/add")
+	public Concert createConcert(@RequestParam String artistName, @RequestParam String venueName, @RequestParam Date date) {
 		return null;
     }
     
@@ -70,7 +70,7 @@ public class ConcertController {
      * 
      * @return The updated Concert Object
      */
-	@PostMapping("/concert")
+	@PostMapping("/concert/update")
 	public Concert updateConcert(@RequestParam long id, @RequestParam Date newDate) {
 		return null;
     }
