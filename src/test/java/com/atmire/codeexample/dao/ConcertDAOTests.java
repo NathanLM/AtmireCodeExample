@@ -1,8 +1,10 @@
 package com.atmire.codeexample.dao;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import com.atmire.codeexample.models.Concert;
@@ -18,7 +20,10 @@ class ConcertDAOTests {
     private ConcertDAO concertDAO;
 
     private Concert createConcert(){
-        return concertDAO.createNewConcert("John", "Sidewalk theater", new Date());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.add(Calendar.MONTH, 1);
+        return concertDAO.createNewConcert("John", "Sidewalk theater", calendar.getTime());
     }
 
     /**
@@ -53,11 +58,9 @@ class ConcertDAOTests {
      */
 
 	@Test
-    public void removeConcert_givenConcertDoesExists_shouldRemoveItFromTheList(){
-        Concert expectedConcert = createConcert();
-        
+    public void removeConcert_givenConcertDoesExists_shouldRemoveItFromTheList(){        
         try{
-            long concertId = expectedConcert.getId();
+            long concertId = createConcert().getId();
             concertDAO.removeConcert(concertId);
             concertDAO.getConcertById(concertId);
 
@@ -66,5 +69,19 @@ class ConcertDAOTests {
             assertTrue(true);
         }
     }
+
+    /**
+     * updateConcert
+     */
+
+	@Test
+    public void updateConcert_givenConcertDoesExists_shouldModifyTheItemInTheList(){
+        Date expectedDate = new Date(99999);
+        long concertId = createConcert().getId();
+        Concert concertAfterUpdate = concertDAO.updateConcert(concertId, expectedDate);
+
+        assertNotEquals(expectedDate.getTime(), concertAfterUpdate.getDate().getTime(), "The date has not been updated");
+    }
+    
 
 }

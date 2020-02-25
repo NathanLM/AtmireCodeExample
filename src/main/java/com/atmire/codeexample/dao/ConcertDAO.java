@@ -65,9 +65,12 @@ public class ConcertDAO{
      * 
      * @param concertId the ID of the concert to update
      * @param newDate the new date of the concert
+     * 
+     * @return the concert after the update
      */
-    public void updateConcert(long concertId, Date newDate){
+    public Concert updateConcert(long concertId, Date newDate){
         //TODO : To implement
+        return null;
     }
 
     /**
