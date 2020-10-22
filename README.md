@@ -1,4 +1,4 @@
-# Atmire Code Example
+# Java REST API
 
 This is an example of a simple Java REST API using Spring Boot.
 
